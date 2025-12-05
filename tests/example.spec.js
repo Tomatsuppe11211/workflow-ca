@@ -1,19 +1,35 @@
 // @ts-check
-import { test, expect } from '@playwright/test';
+import { test, expect } from "@playwright/test";
 
-test('has title', async ({ page }) => {
-  await page.goto('https://playwright.dev/');
+test("loging in", async ({ page }) => {
+  //Going to the login page
+  await page.goto("/login/index.html");
 
-  // Expect a title "to contain" a substring.
-  await expect(page).toHaveTitle(/Playwright/);
-});
+  //Getting input fields and fill inn login information
+  await page
+    .locator('input[name = "email"]')
+    .fill("workflowuser@stud.noroff.no");
+  await page.locator('input[name = "password"]').fill("workflowpass");
 
-test('get started link', async ({ page }) => {
-  await page.goto('https://playwright.dev/');
+  //Finding and clicking on the login button
+  await page.locator("button").click();
 
-  // Click the get started link.
-  await page.getByRole('link', { name: 'Get started' }).click();
+  //CHecking if logout button excists after loging in
+  await expect(page.getByRole("button", { name: "logout" })).toBeVisible();
+}); //success login function
 
-  // Expects page to have a heading with the name of Installation.
-  await expect(page.getByRole('heading', { name: 'Installation' })).toBeVisible();
-});
+test("wrong password shows an error", async ({ page }) => {
+  //going to the login page
+  await page.goto("/login/index.html");
+
+  //Getting input fields and fill inn login information
+  await page
+    .locator('input[name = "email"]')
+    .fill("workflowuser@stud.noroff.no");
+  await page.locator('input[name = "password"]').fill("Applejuice");
+
+  //Finding and clicking on the login button
+  await page.locator("button").click();
+
+  await expect(page.locator("#message-container")).toContainText("Invalid");
+}); //Success
