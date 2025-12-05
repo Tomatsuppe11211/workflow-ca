@@ -2,9 +2,19 @@
 This is my submission for the workflow CA
 
 ## Available scripts
+- npm run start
 - npm run dev
 - npm run rewrite
 - npm run prepare
+
+### unit testing
+- npm run unit
+
+### e2e tests
+- npm run e2e
+- npm run e2e-headed
+- npm run e2e-debug
+- npm run e2e show-report
 
 ## Technologies used
 - js
@@ -17,9 +27,13 @@ This is my submission for the workflow CA
 - vite
 - vitest
 - globals
+- dotenv
 
-## .env
-No env is used for this repo
+## Required env vars
+```bash
+TEST_EMAIL=
+TEST_PASSWORD=
+```
 
 ## Author
 - Tomatsuppe11211

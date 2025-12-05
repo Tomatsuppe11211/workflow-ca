@@ -4,17 +4,25 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "vite",
     "dev": "npx tailwindcss -i ./css/input.css -o ./css/style.css --watch",
     "rewrite": "npx prettier . --write",
     "prepare": "husky install",
-    "unit": "vitest"
+    "unit": "vitest",
+    "e2e": "npx playwright test",
+    "e2e-headed": "npx playwright test --headed",
+    "e2e-debug": "npx playwright test --debug",
+    "e2e-report": "npx playwright show-report"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@eslint/js": "^9.39.1",
+    "@playwright/test": "^1.57.0",
+    "@types/node": "^24.10.1",
     "@vitest/browser": "^4.0.15",
+    "dotenv": "^17.2.3",
     "eslint": "^9.39.1",
     "globals": "^16.5.0",
     "husky": "^9.1.7",
