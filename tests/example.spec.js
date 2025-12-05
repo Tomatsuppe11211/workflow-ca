@@ -33,3 +33,18 @@ test("wrong password shows an error", async ({ page }) => {
 
   await expect(page.locator("#message-container")).toContainText("Invalid");
 }); //Success
+
+test("checking venue details", async ({ page }) => {
+  //Going to home page
+  await page.goto("/index.html");
+
+  //waiting for venue list and check if the first one is visible
+  const firstVenue = await page.locator("#venue-container a").first();
+  await expect(firstVenue).toBeVisible();
+
+  //clicking the first venue card
+  await firstVenue.click();
+
+  //checking the text in the heading
+  await expect(page.getByRole("heading")).toContainText("Venue details");
+});
